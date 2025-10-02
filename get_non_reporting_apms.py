@@ -11,7 +11,7 @@ parser = argparse.ArgumentParser(description = "Description for my parser")
 parser.add_argument('user_key')
 parser.add_argument('account_id')
 parser.add_argument("-D", "--delete", required=False, action='store_true')
-rgument = parser.parse_args()
+argument = parser.parse_args()
 
 
 #allowed_names = ['']
