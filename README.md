@@ -1,6 +1,8 @@
 GraphQL Examples
 ================================================
 
+## NOTE: This repository is not officially verified, tested or supported! ##
+
 ## Requirements:
 
 * python
