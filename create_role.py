@@ -4,12 +4,19 @@ import sys
 import argparse
 
 
+if len(sys.argv) < 4:
+    print("Usage: python create_role.py <user_key> <permission_file> <role_name> [-C]")
+    sys.exit(1)
+
 user_key = sys.argv[1]
 permission_file = sys.argv[2]
+role_name = sys.argv[3]
 
 parser = argparse.ArgumentParser(description = "Description for my parser")
 parser.add_argument('user_key')
 parser.add_argument('permission_file')
+parser.add_argument('role_name')
+parser.add_argument("-C", "--create", required=False, action='store_true')
 argument = parser.parse_args()
 
 
@@ -65,7 +72,12 @@ def createRole(role_name, org_id, permissions):
       }}
       '''.format(org_id=org_id, role_name=role_name, permissions=json.dumps(permissions))
     print(payload)
-    # exit(1)
+    if argument.create == False:
+      return
+    
+    print("Creating Role...")
+        
+  
     endpoint = "https://api.newrelic.com/graphql"
     headers = {'Content-Type': 'application/json', 'API-Key': f'{user_key}'}
     response = requests.post(endpoint, headers=headers, json={'query': payload})
@@ -80,7 +92,5 @@ def createRole(role_name, org_id, permissions):
 if __name__ == '__main__':
     org_id = getOrgId()
     permissions = loadPermissions(permission_file)
-    pretty_permissions = json.dumps(permissions, indent=4)
-    print(pretty_permissions)
     print(f"Organization ID: {org_id}")
-    createRole("test role 4", org_id, permissions)
+    createRole(argument.role_name, org_id, permissions)

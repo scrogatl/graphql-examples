@@ -8,7 +8,6 @@ user_key = sys.argv[1]
 
 parser = argparse.ArgumentParser(description = "Description for my parser")
 parser.add_argument('user_key')
-parser.add_argument("-D", "--delete", required=False, action='store_true')
 argument = parser.parse_args()
 
 def getPermissions():
