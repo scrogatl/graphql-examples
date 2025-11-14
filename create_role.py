@@ -5,7 +5,7 @@ import argparse
 
 
 if len(sys.argv) < 4:
-    print("Usage: python create_role.py <user_key> <permission_file> <role_name> [-C]")
+    print("Usage: python create_role.py <user_key> <permission_file> <role_name> [-C (actually create the role)]")
     sys.exit(1)
 
 user_key = sys.argv[1]
@@ -18,7 +18,6 @@ parser.add_argument('permission_file')
 parser.add_argument('role_name')
 parser.add_argument("-C", "--create", required=False, action='store_true')
 argument = parser.parse_args()
-
 
 def getOrgId():
     payload = '''
