@@ -5,6 +5,7 @@ GraphQL Examples
 
 * python
 * pip
+* New Relic USER key (starts with NRAK)
 
 ----
 
