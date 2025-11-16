@@ -13,7 +13,7 @@ GraphQL Examples
 
 
 
-`get_non_reporting_apms.py` - List APMs that have not reported in 24 hours. Add `-D` to actually delete the APM from New Relic.
+`cleanup_[apm | browser].py` - List APMs | Browser apps that have not reported in 24 hours. Add `-D` to actually delete from New Relic.
 
 `get_permissions.py` - Retreive all the account permissions. Output to .json file to use in creating a new role.
 
