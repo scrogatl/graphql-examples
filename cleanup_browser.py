@@ -1,13 +1,17 @@
 import requests
 import json
 import sys
+import argparse
 
 user_key = sys.argv[1]
 account_id = sys.argv[2]
-env = sys.argv[3]
 
+parser = argparse.ArgumentParser(description = "Description for my parser")
+parser.add_argument('user_key')
+parser.add_argument('account_id')
+parser.add_argument("-D", "--delete", required=False, action='store_true')
+argument = parser.parse_args()
 
-allowed_names = ['Frontend']
 
 def get(account):
     payload = '''
@@ -80,6 +84,10 @@ if __name__ == '__main__':
     for tuple in name_guid_tuples:
         name = tuple[0]
         guid = tuple[1]
-        if name not in allowed_names:
-            print(f"Debug - deleting {name}")
-            #delete(guid)
+        print(f"INFO - found {name}")
+        if argument.delete:
+            print(f"Deleting {name}")
+            delete(guid)
+            
+            
+

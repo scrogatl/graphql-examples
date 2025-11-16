@@ -3,7 +3,6 @@ import json
 import sys
 import argparse
 
-
 user_key = sys.argv[1]
 account_id = sys.argv[2]
 
@@ -12,9 +11,6 @@ parser.add_argument('user_key')
 parser.add_argument('account_id')
 parser.add_argument("-D", "--delete", required=False, action='store_true')
 argument = parser.parse_args()
-
-
-#allowed_names = ['']
 
 def get(account):
     payload = '''
