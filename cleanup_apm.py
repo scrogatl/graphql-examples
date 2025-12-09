@@ -21,6 +21,7 @@ def get(account):
           query
           results {
             entities {
+              entityType
               guid
               name
             }
@@ -42,8 +43,9 @@ def get(account):
     else:
         # raise an error with a HTTP response code
         raise Exception(f'Nerdgraph request failed with a {response.status_code}.')
+
     for i in dict_response['data']['actor']['entitySearch']['results']['entities']:
-        allowlist_name_guid_tuple.append((i['name'], i['guid']))
+        allowlist_name_guid_tuple.append((i['name'], i['guid'],i['entityType']))
     return allowlist_name_guid_tuple
 
 def delete(guid):
@@ -79,7 +81,9 @@ if __name__ == '__main__':
     for tuple in name_guid_tuples:
         name = tuple[0]
         guid = tuple[1]
-        print(f"INFO - found {name}")
+        entityType = tuple[2]
+        if "APM" in entityType:
+            print(f"INFO - found {name} {entityType}")
         if argument.delete:
             print(f"Deleting {name}")
             delete(guid)
